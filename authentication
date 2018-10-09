@@ -1,0 +1,13 @@
+steps to perform authentication in mongod
+
+1. start mongod
+2.Access mongoshell mongo
+3. use database(want to restrict)
+4. create user as
+    db.createUser({user:"amol",pwd:"bandal",roles:["read"]})
+5. restart the mongod as
+
+    mongod --dbpath "path" --port 27017 --auth
+
+6. Access client as
+    mongo -u "amol" -p "bandal" --authenticationDatabase "database" 
