@@ -1,5 +1,6 @@
 mongoimport --drop -d MyDatabase -c posts posts.json
 mongoexport --db test --collection traffic --out traffic.json
+mongoexport --host --port -u -p -d -c --type=csv --fields _id,CreatedDate,type --out /DailyReport/24-Oct-18.csv
 
 mongodump  --db test --excludeCollection=users --excludeCollection=salaries
 mongodump --host mongodb1.example.net --port 37017 --username user --password "pass" --out /opt/backup/mongodump-2011-10-24
