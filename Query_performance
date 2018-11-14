@@ -5,6 +5,7 @@ db.getProfilingStatus()
 db.setProfilingLevel(2)
 4. Sort queries by when they were recorded, showing just commands
 db.system.profile.find({ "command.pipeline": { $exists: true } }, { "command.pipeline":1 }).sort({$natural:-1}).pretty();
+db.system.profile.find({},{ns:1,command:1,millis:1}).sort({millis:-1}).pretty()
 
 
 
