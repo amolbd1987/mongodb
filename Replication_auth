@@ -17,7 +17,7 @@ replication:
   replSetName: myreplica
 
 sudo mkdir -p /var/mongodb/pki/
-sudo chown vagrant:vagrant /var/mongodb/pki/
+sudo chown amol:amol /var/mongodb/pki/
 openssl rand -base64 741 > /var/mongodb/pki/keyfile
 chmod 400 /var/mongodb/pki/keyfile
 
