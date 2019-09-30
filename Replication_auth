@@ -1,0 +1,40 @@
+#node1.conf 
+storage:
+  dbPath: /var/mongodb/db/node1
+net:
+  bindIp: localhost
+  port: 27011
+security:
+  authorization: enabled
+  keyFile: /var/mongodb/pki/keyfile
+systemLog:
+  destination: file
+  path: /var/mongodb/db/node1/mongod.log
+  logAppend: true
+processManagement:
+  fork: true
+replication:
+  replSetName: myreplica
+
+sudo mkdir -p /var/mongodb/pki/
+sudo chown vagrant:vagrant /var/mongodb/pki/
+openssl rand -base64 741 > /var/mongodb/pki/keyfile
+chmod 400 /var/mongodb/pki/keyfile
+
+mongod -f node1.conf
+mongod -f node2.conf
+mongod -f node3.conf
+
+mongo --port 27011
+use admin
+db.createUser({
+  user: "mongoadmin",
+  pwd: "pass",
+  roles: [
+    {role: "root", db: "admin"}
+  ]
+})
+
+exit
+mongo --host "myreplica/localhost:27011" -u "mongoadmin" -p "pass" --authenticationDatabase "admin"
+
