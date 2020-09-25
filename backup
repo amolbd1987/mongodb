@@ -1,0 +1,6 @@
+// specific collection
+
+ mongoexport --host="13.126...." --port=27017 --collection=tenantInfo --db=PBCRent --out=tenantInfo.json -u=username -p=pass --authenticationDatabase admin
+
+//complete db
+mongodump --host="13.126..." --port=27017  --db=PBCRent -u=user -p=pass --authenticationDatabase admin
